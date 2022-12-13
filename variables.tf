@@ -34,7 +34,7 @@ variable "name" {
 # The region to deploy our infrastructure to.
 variable "region" {
     type    = string
-    default = "nyc3"
+    default = "nyc1"
 }
 
 
@@ -67,5 +67,14 @@ variable "database_size" {
 # Can view slugs (valid options) https://slugs.do-api.dev/
 variable "image" {
     type = string
-    default = "ubuntu-20-04-x64"
+    default = "ubuntu-22-04-x64"
+}
+
+
+variable "ip_range" {
+    type = string
+}
+
+variable "size"{
+  type = string
 }

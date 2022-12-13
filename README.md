@@ -28,7 +28,7 @@ the Terraform files in this directory.
                           |                                                   
                           v                                                    
                 +--------------------+                                        
-                |    Load Balancer   |                                        
+                | Application LoadBalancer   |                                        
    +----------------------------------------------------+                          
    |            |                    |                  |                     
    |            +--------------------+                  |                     
@@ -122,9 +122,7 @@ this repository and run terraform from within this directory or copy the files
 elsewhere.
 
 ### Variables
-The first thing you need to do is create a variables file. `nyc3.tfvars` and
-`sfo2.tfvars` are sample variable files that have `CHANGE_ME` in them where
-certain fields need to be updated. If you name your file `terraform.tfvars` or
+The first thing you need to do is create a variables file. `variables.tf` and if you name your file `terraform.tfvars` or
 have the `.auto.tfvars` extension when you run terraform it will automatically 
 use these files. If not you will have to specify the file via the command line.
 
@@ -211,3 +209,4 @@ up on [Terraform workspaces](https://www.terraform.io/docs/state/workspaces.html
 ## Contributors
 
 * Mason Egger - Primary Author
+* AmazingDevOps.Com ==> kenyan & USA group -> Modified the code

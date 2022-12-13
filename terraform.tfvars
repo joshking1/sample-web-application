@@ -1,0 +1,9 @@
+region = "nyc"
+droplet_count = 3
+ssh_key = "hostserver"
+size = "s-1vcpu-1gb"
+subdomain = "minimal-vpc"
+domain_name = "pmkash.com"
+name = "minimal-vpc"
+ip_range = "192.168.32.0/24"
+do_token ="dop_v1_9b0cdd50be81a3ad398156ef88dbaf4f3034ca993920906024d0bed0b754ac97"

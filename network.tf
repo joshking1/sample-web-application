@@ -3,11 +3,11 @@
 ################################################################################
 resource "digitalocean_vpc" "web"{
     # The human friendly name of our VPC.
-    name = "minimal-vpc"
+    name = "${var.name}"
 
     # The region to deploy our VPC to.
-    region = var.region
+    region = "${var.region}1"
 
     # The private ip range within our VPC
-    ip_range = "192.168.32.0/24"
+    ip_range = "${var.ip_range}"
 }

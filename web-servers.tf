@@ -3,20 +3,20 @@
 ################################################################################
 resource "digitalocean_droplet" "web" {
     # How many droplet(s) do we want. Taken from our variables
-    count = var.droplet_count
+    count = "${var.droplet_count}"
 
     # Which image to use. Taken from our variables
-    image = var.image
+    image = "${var.image}"
 
     # The human friendly name of our droplet. Combination of web, region, and 
     # count index. 
     name = "web-${var.name}-${var.region}-${count.index +1}"
 
     # What region to deploy the droplet(s) to. Taken from our variables
-    region = var.region
+    region = "${var.region}1"
 
     # What size droplet(s) do I want? Taken from our variables
-    size = var.droplet_size
+    size = "${var.droplet_size}"
 
     # The ssh keys to put on the server so we can access it. Read in through a 
     # data source
@@ -42,7 +42,7 @@ resource "digitalocean_droplet" "web" {
         - postgresql-contrib
     runcmd:
         - wget -P /var/www/html https://raw.githubusercontent.com/do-community/terraform-sample-digitalocean-architectures/master/01-minimal-web-db-stack/assets/index.html
-        - sed -i "s/CHANGE_ME/web-${var.region}-${count.index +1}/" /var/www/html/index.html
+        - sed -i "s/hostserver/web-${var.region}-${count.index +1}/" /var/www/html/index.html
     EOF
 
     #-----------------------------------------------------------------------------------------------#
@@ -81,10 +81,10 @@ resource "digitalocean_certificate" "web" {
 resource "digitalocean_loadbalancer" "web" {
 
     # The user friendly name of the load balancer
-    name = "web-${var.region}"
+    name = "web-${var.region}1"
 
     # What region to deploy the LB to
-    region = var.region
+    region = "${var.region}1"
 
     # Which droplets should the load balancer route traffic to
     droplet_ids = digitalocean_droplet.web.*.id
@@ -134,7 +134,7 @@ resource "digitalocean_loadbalancer" "web" {
 resource "digitalocean_firewall" "web" {
 
     # The name we give our firewall for ease of use                            #    
-    name = "minimal-vpc-only-vpc-traffic"
+    name = "${var.name}-only-vpc-traffic"
 
     # The droplets to apply this firewall to                                   #
     droplet_ids = digitalocean_droplet.web.*.id
@@ -221,7 +221,7 @@ resource "digitalocean_record" "web" {
     type   = "A"
 
     # Set the name to the region we chose. Can be anything
-    name   = var.subdomain
+    name   = "${var.subdomain}"
 
     # Point the record at the IP address of our load balancer
     value  = digitalocean_loadbalancer.web.ip

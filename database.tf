@@ -14,13 +14,12 @@ resource "digitalocean_database_cluster" "postgres-cluster" {
     version    = "11"
 
     # Size of the database instance
-    size       = var.database_size
-
+    size       = "${var.database_size}"
     # Region to deploy the database to
-    region     = var.region
+    region     = "${var.region}1"
 
     # How many database nodes do we want
-    node_count = var.db_count
+    node_count = "${var.db_count}"
 
     # VPC to put the 
     private_network_uuid = digitalocean_vpc.web.id

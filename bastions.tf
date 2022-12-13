@@ -4,16 +4,16 @@
 resource "digitalocean_droplet" "bastion" {
 
     # Which image to use. Taken from our variables
-    image = var.image
+    image = "${var.image}"
 
     # human friendly name for the droplet
-    name = "bastion-${var.name}-${var.region}"
+    name = "bastion-${var.name}-${var.region}1"
 
     # What region to deploy the droplet(s) to. Taken from our variables
-    region = var.region
+    region = "${var.region}1"
     
     # Size of the bastion. Can be small since it's only doing ssh
-    size = "s-1vcpu-1gb"
+    size = "${var.size}"
 
     # The ssh keys to put on the server so we can access it. Read in through a 
     # data source
@@ -36,7 +36,7 @@ resource "digitalocean_record" "bastion" {
     type   = "A"
 
     # Set the name to bastion-name-region
-    name   = "bastion-${var.name}-${var.region}"
+    name   = "bastion-${var.name}-${var.region}1"
 
     # Point the record at the IP address of our bastion droplet
     value  = digitalocean_droplet.bastion.ipv4_address
